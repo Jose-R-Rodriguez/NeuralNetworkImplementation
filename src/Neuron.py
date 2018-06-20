@@ -1,3 +1,5 @@
+from Connection import Connection
+import numpy, math
 class Neuron:
 	eta= 0.001
 	alpha= 0.01

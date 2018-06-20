@@ -1,4 +1,4 @@
-import numpy, math
+import numpy
 class Connection:
 	def __init__(self, connectedNeuron):
 		self.connectedNeuron= connectedNeuron
