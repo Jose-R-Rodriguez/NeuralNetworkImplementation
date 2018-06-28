@@ -1,0 +1,31 @@
+\subsection{Clase Neuron}
+\begin{lstlisting}[language=Python]
+class Neuron:
+	eta= 0.001
+	alpha= 0.01
+	def __init__(self, layer):
+		self.dendrons= []
+		self.error= 0.0
+		self.gradient= 0.0
+		self.output= 0.0
+		if layer is None:
+			pass
+		else:
+			for neuron in layer:
+				con= Connection(neuron)
+				self.dendrons.append(con)
+\end{lstlisting}
+\paragraph{}En nuestra clase neuron tenemos varios modulos, cubriremos los mas importantes empezando con el constructor de la clase. Aqu\'i una neurona se inicializa con su error,gradiente y su valor de salida en 0 y definimos una lista \textbf{\emph{de instancia}} de conexiones. En nuestro for loop hacemos que el neuron tome su lista de conexiones y que cree nuevas conexiones y las agregue a su lista.
+
+\paragraph{Backpropagation} Las funciones en nuestra clase son cortas pero es intuitivo entender lo que esta pasando por ellas. Veremos la mas importante y menos entendible a simple vista, pero si nuestras nueronas van a tener algunas otras funciones como la funcion de sigmoid, set error, get output, etc. Todas son funciones f\'acilmente entendibles en lo que hacen.
+\begin{lstlisting}[language=Python]
+def backPropagate(self):
+	self.gradient= self.error * self.dSigmoid(self.output)
+	for dendron in self.dendrons:
+		dendron.dWeight = Neuron.eta * (
+		dendron.connectedNeuron.output * self.gradient) + self.alpha * dendron.dWeight
+		dendron.weight = dendron.weight + dendron.dWeight
+		dendron.connectedNeuron.addError(dendron.weight * self.gradient)
+	self.error = 0
+\end{lstlisting}
+\subparagraph{} Ahora en backprogation utilizaremos la formula \( \delta weight= \eta \times gradient \times output of connected neuron + \alpha \times previous \delta weight \) para calcular el peso de la conexi\'on como podemos ver aqu\'i utilizamos el gradient calculado por nuestra funci\'on de sigmoid. Despu\'es es simple el peso es el error mas el delta peso que hemos calculado y finalmente le a\~nadimos eso, multiplicado por el gradiente para minimizar el resultado a nuestro error en el dendron. Basado en el calculo de este peso es que feedforwarding nos da el output de nuestras neuronas.

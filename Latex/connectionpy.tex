@@ -1,0 +1,13 @@
+\subsection{Clase Conexi\'on}
+\begin{lstlisting}[language=Python]
+class Connection:
+	def __init__(self, connectedNeuron):
+		self.connectedNeuron= connectedNeuron
+		self.weight= numpy.random.normal()
+		self.dWeight= 0.0
+\end{lstlisting}
+\paragraph{}La clase conexi\'on es corta pero es la mas \'util de todas nuestras clases. Esta clase es extremadamente simple y en retrospectiva deber\'ia llamarse dendron. Aqu\'i lo \'unico que hacemos es crear 3 miembros de instancia, la neurona conectada, su pedo y el peso delta. La neurona conectada la recibe en su constructor y de ah\'i le damos un peso aleatorio a nuestra conexion.
+\begin{lstlisting}[language=Python]
+self.weight= numpy.random.normal()
+\end{lstlisting}
+\paragraph{Por que Peso Aleatorio?}Bueno, cada unidad oculta obtiene la suma de entradas multiplicada por el peso correspondiente. Ahora imagine que inicializa todos los pesos con el mismo valor (por ejemplo, cero o uno). En este caso, cada unidad oculta obtendr\'a exactamente la misma se\~nal. P.ej. si todos los pesos se inicializan en 1, cada unidad recibe una se\~nal igual a la suma de las entradas (y las salidas sigmoideas (suma (entradas))). Si todos los pesos son ceros, lo que es a\'un peor, cada unidad oculta obtendr\'a se\~nal cero. No importa cu\'al fuera la entrada: si todos los pesos son iguales, todas las unidades en la capa oculta serán las mismas tambi\'en.

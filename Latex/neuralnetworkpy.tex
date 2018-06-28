@@ -1,0 +1,33 @@
+\subsection{Clase Network}
+\begin{lstlisting}[language=Python]
+class Network:
+	def __init__(self, topology):
+#topology is a list containing [input_layer,hidden_layers,output_layer]
+		self.layers= []
+		for numNeuron in topology:
+			layer= []
+			for i in range(numNeuron):
+				#we got no layers then
+				if not self.layers:
+					layer.append(Neuron(None))
+				else:
+					layer.append(Neuron(self.layers[-1]))
+			layer.append(Neuron(None)) #this is our bias neuron
+			layer[-1].setOutput(1)		#our bias will be of 1
+			self.layers.append(layer)
+\end{lstlisting}
+\paragraph{}Para finalizar esta la clase que trae a nuestros componentes juntos. La clase Network, su aspecto mas complicado es su constructor pero honestamente no es tan complicado.
+\begin{lstlisting}[language=Python]
+	def feedForward(self):
+		for layer in self.layers[1:]:
+			for neuron in layer:
+				neuron.feedForward()
+
+	def backPropagate(self, target):
+		for i in range(len(target)):
+			self.layers[-1][i].setError(target[i] - self.layers[-1][i].getOutput())
+		for layer in self.layers[::-1]: #extended slice reverses the order of self.layers
+			for neuron in layer:
+				neuron.backPropagate()
+\end{lstlisting}
+\paragraph{Finalmente} Como podemos ver feedforward y backpropagate simplemente llaman a las funciones respectivas de sus neurones. Para concluir, esta es una red que puede resolver problemas de 0 y 1 por la funcion getThResults que esta definida en networks(El codigo fuente puede ser encontrado en la bibliografia);
