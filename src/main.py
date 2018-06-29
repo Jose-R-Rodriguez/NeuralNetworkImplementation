@@ -20,7 +20,7 @@ def main():
 			net.backPropagate(outputs[i])
 			err= err+ net.getError(outputs[i])
 		print ("Error: ", err)
-		if err < 1.2:
+		if err < 1.5:
 			break
 	while True:
 		a= int(input("First input: "))

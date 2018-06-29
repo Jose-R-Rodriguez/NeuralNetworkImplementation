@@ -1,0 +1,12 @@
+\subsection{Estrategia de Paralelizacion}
+\begin{lstlisting}[language=Python]
+for i in range(2):
+	t= threading.Thread(target=TrainNet, args=(inputs[i], [nets[i]], outputs[i], i, result_list))
+	threads.append(t)
+	t.start()
+for i in range(2):
+	threads[i].join()
+net1= result_list[0]
+net2= result_list[1]
+\end{lstlisting}
+\paragraph{Implementacion en Paralelo} Lo que he creado es una implementacion de una libreria de una red neuronal. Ahora en el main.py tenemos una muestra de como implementarlo, y el codigo que mostramos arriba es una implementacion en paralelo. Basicamente la estrategia es crear 2 redes a partir de nuestra entrada y separar la mitad del entendimiento entre ellas. En esencia es tener 2 cerebros mas simples y mas peque\~nos que son equivalentes al 1 cerebro que entrenamos en el main. Y a partir de la entrada utilizar cualquiera de nuestras 2 redes.
