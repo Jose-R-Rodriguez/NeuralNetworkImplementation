@@ -5,12 +5,13 @@ def main():
 	topology= []
 	topology.append(2)
 	topology.append(3)
-	topology.append(2)
+	topology.append(3)
+	topology.append(1)
 	net= Network(topology)
 	neuron.eta= 0.09
 	neuron.alpha= 0.015
 	inputs= [[0, 0],[0, 1],[1, 0],[1, 1]]
-	outputs=[[0, 0],[1, 0],[1, 0],[0, 1]]
+	outputs=[[0],[1],[1],[0]]
 	while True:
 		err= 0
 		for i in range(len(inputs)):
