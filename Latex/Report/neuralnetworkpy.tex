@@ -2,7 +2,7 @@
 \begin{lstlisting}[language=Python]
 class Network:
 	def __init__(self, topology):
-#topology is a list containing [input_layer,hidden_layers,output_layer]
+		#topology is a list containing [input_layer,hidden_layers,output_layer]
 		self.layers= []
 		for numNeuron in topology:
 			layer= []
@@ -16,7 +16,7 @@ class Network:
 			layer[-1].setOutput(1)		#our bias will be of 1
 			self.layers.append(layer)
 \end{lstlisting}
-\paragraph{}Para finalizar esta la clase que trae a nuestros componentes juntos. La clase Network, su aspecto mas complicado es su constructor pero honestamente no es tan complicado.
+\paragraph{}Para finalizar esta la clase que trae a nuestros componentes juntos. La clase Network, su aspecto mas complicado es su constructor. Veamos paso por paso. Primero recibimos topology, esto nos define nuestros input layers, hidden layers y la output layer. Decimos que por cada neuron en la topolog\'ia vamos a darle append en la layer, ahora lo que pasa es que tenemos 1 espacio reservado para nuestro neuron de bias.
 \begin{lstlisting}[language=Python]
 	def feedForward(self):
 		for layer in self.layers[1:]:
@@ -30,4 +30,4 @@ class Network:
 			for neuron in layer:
 				neuron.backPropagate()
 \end{lstlisting}
-\paragraph{Finalmente} Como podemos ver feedforward y backpropagate simplemente llaman a las funciones respectivas de sus neurones. Para concluir, esta es una red que puede resolver problemas de 0 y 1 por la funcion getThResults que esta definida en networks(El codigo fuente puede ser encontrado en la bibliografia);
+\paragraph{Finalmente} Como podemos ver feedforward y backpropagate simplemente llaman a las funciones respectivas de sus neuronas. Para concluir, esta es una red que puede resolver problemas de 0 y 1 por la funcion getThResults que esta definida en networks(El c\'odigo fuente completo puede ser encontrado en la bibliografia). Las pruebas corridas han sido con adders de 1 bit, and de 1 bit y XOR.
